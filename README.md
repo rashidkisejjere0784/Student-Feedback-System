@@ -1,34 +1,29 @@
-# [Django Soft Dashboard](https://appseed.us/product/soft-ui-dashboard/django/)
+# Student Feedback System - Django Soft Dashboard
 
-Open-source **Django** project crafted on top of **[Soft Dashboard](https://appseed.us/product/soft-ui-dashboard/django/)**, an open-source `Bootstrap 5` design from [Creative-Tim](https://www.creative-tim.com/product/soft-ui-dashboard?AFFILIATE=128200).
-Designed for those who like bold elements and beautiful websites. Made of hundred of elements, designed blocks and fully coded pages, `Soft UI Dashboard` is ready to help you create stunning websites and webapps.
+The Student Feedback System is an open-source Django project built on top of the Soft Dashboard, an open-source Bootstrap 5 design from Creative-Tim. It is designed for those who appreciate bold elements and beautiful websites, providing a wide range of elements, designed blocks, and fully coded pages to create stunning websites and web apps.
 
-- 👉 [Django Soft Dashboard](https://appseed.us/product/soft-ui-dashboard/django/) - `Product page`
-- 👉 [Django Soft Dashboard](https://django-soft-dash.onrender.com) - `LIVE Demo`
-- 🛒 **[Django Soft Dashboard PRO](https://appseed.us/product/soft-ui-dashboard-pro/django/)** - `Premium Version`
+## Features
 
-<br />
+- ✅ Up-to-date Dependencies
+- ✅ Theme: [Django Admin Soft](https://github.com/app-generator/django-admin-soft-dashboard), designed by Creative-Tim
+  - Can be used in any Django project (new or legacy)
+- ✅ Authentication: Django.contrib.AUTH, Registration
+- 🚀 Deployment
+  - CI/CD flow via Render
+  - [Django Soft - Go LIVE](https://www.youtube.com/watch?v=1QVdQVSkUCI) - Video presentation
 
-> Features: 
+### Useful Links
 
-- ✅ `Up-to-date Dependencies`
-- ✅ Theme: [Django Admin Soft](https://github.com/app-generator/django-admin-soft-dashboard), designed by [Creative-Tim](https://www.creative-tim.com/product/soft-ui-dashboard?AFFILIATE=128200)
-  - `can be used in any Django project` (new or legacy)
-- ✅ **Authentication**: `Django.contrib.AUTH`, Registration
-- 🚀 `Deployment` 
-  - `CI/CD` flow via `Render`
-  - [Django Soft - Go LIVE](https://www.youtube.com/watch?v=1QVdQVSkUCI) - `video presentation`
+- [Django Soft Dashboard - Product page](https://appseed.us/product/soft-ui-dashboard/django/)
+- [Django Soft Dashboard - LIVE Demo](https://django-soft-dash.onrender.com)
+- 🛒 [Django Soft Dashboard PRO - Premium Version](https://appseed.us/product/soft-ui-dashboard-pro/django/)
 
-<br />
+## Manual Build
 
-![Django Admin Soft - Template project for Django provided by AppSeed.](https://user-images.githubusercontent.com/51070104/215729207-5cce250e-54da-4712-89a9-c1fd6b0a149e.png)
+To set up the Student Feedback System manually, follow these steps:
 
-<br />
+1. **Download the code**
 
-## Manual Build 
-
-> 👉 Download the code  
-
-```bash
-$ git clone https://github.com/app-generator/django-soft-ui-dashboard.git
-$ cd django-soft-ui-dashboard
+   ```bash
+   $ git clone https://github.com/app-generator/django-soft-ui-dashboard.git
+   $ cd django-soft-ui-dashboard
