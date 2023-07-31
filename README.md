@@ -87,4 +87,14 @@ The project follows a simple and intuitive structure:
    |
    |-- ************************************************************************
 ```
+--- 
+## Recompile SCSS  
 
+The SCSS/CSS files used to style the UI are saved in the `static` directory. 
+In order to update the UI colors (primary, secondary) this procedure needs to be followed. 
+
+```bash
+$ yarn                                             # install modules
+$ vi static/scss/soft-ui-dashboard/_variables.scss # edit variables 
+$ gulp                                             # SCSS to CSS translation
+```
