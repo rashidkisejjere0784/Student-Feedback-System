@@ -1,0 +1,41 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container-fluid py-4">
+  <div class="card shadow-xl">
+    <form class="m-4">
+      <div class="row">
+        <div class="col">
+          <label for="exampleInputEmail1">Student Number</label>
+          <input type="text" class="form-control" placeholder="Student Number">
+        </div>
+        <div class="col">
+          <label for="exampleInputEmail1">Registration Number</label>
+          <input type="text" class="form-control" placeholder="Registration Number">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <label for="exampleInputEmail1">Instructor Name</label>
+          <input type="text" class="form-control" placeholder="Instructor Name">
+        </div>
+        <div class="col">
+          <label for="exampleInputEmail1">Course Number</label>
+          <input type="text" class="form-control" placeholder="Course Number">
+        </div>
+      </div>
+  
+      <div class="mb-3">
+        <label for="exampleFormControlTextarea1" class="form-label">Feedback</label>
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+
+    {% include "includes/footer.html" %}
+    
+</div>
+
+{% endblock content %}
