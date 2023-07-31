@@ -30,6 +30,44 @@
               <label for="feedbackTextarea" class="form-label">Feedback</label>
               <textarea class="form-control" id="feedbackTextarea" rows="3"></textarea>
             </div>
+
+            <!-- Quantitative Feedback Questions -->
+            <div class="mb-3">
+              <h6>Quantitative Feedback</h6>
+              <label for="courseRating">Overall Course Rating</label>
+              <select class="form-select" id="courseRating">
+                <option value="5">Excellent</option>
+                <option value="4">Very Good</option>
+                <option value="3">Good</option>
+                <option value="2">Fair</option>
+                <option value="1">Poor</option>
+              </select>
+            </div>
+
+            <div class="mb-3">
+              <label>Was the course content relevant and comprehensive?</label>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="contentRelevance" id="contentRelevanceYes" value="yes">
+                <label class="form-check-label" for="contentRelevanceYes">Yes</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="contentRelevance" id="contentRelevanceNo" value="no">
+                <label class="form-check-label" for="contentRelevanceNo">No</label>
+              </div>
+            </div>
+
+            <!-- Qualitative Feedback Questions -->
+            <div class="mb-3">
+              <h6>Qualitative Feedback</h6>
+              <label for="likedMostTextarea">What did you like most about the course?</label>
+              <textarea class="form-control" id="likedMostTextarea" rows="3"></textarea>
+            </div>
+
+            <div class="mb-3">
+              <label for="improvementSuggestionsTextarea">Any suggestions for improvement?</label>
+              <textarea class="form-control" id="improvementSuggestionsTextarea" rows="3"></textarea>
+            </div>
+
             <button type="submit" class="btn btn-primary">Submit</button>
           </form>
         </div>
