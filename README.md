@@ -36,3 +36,11 @@ To set up the Student Feedback System manually, follow these steps:
     $ pip install -r requirements.txt
     ```
     ---
+   
+4. Set Up Database
+   ```bash
+   $ python manage.py makemigrations
+    $ python manage.py migrate
+   ```
+   ---
+
