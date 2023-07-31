@@ -30,6 +30,41 @@
         <label for="feedbackTextarea" class="form-label">Feedback</label>
         <textarea class="form-control" id="feedbackTextarea" rows="3"></textarea>
       </div>
+      
+      <!-- Quantitative Feedback Questions -->
+      <h4>Quantitative Feedback</h4>
+      <div class="mb-3">
+        <label for="courseContentRating">Course Content Rating:</label>
+        <select class="form-select" id="courseContentRating">
+          <option value="5">Excellent</option>
+          <option value="4">Good</option>
+          <option value="3">Average</option>
+          <option value="2">Below Average</option>
+          <option value="1">Poor</option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <label for="instructorTeachingRating">Instructor Teaching Rating:</label>
+        <select class="form-select" id="instructorTeachingRating">
+          <option value="5">Excellent</option>
+          <option value="4">Good</option>
+          <option value="3">Average</option>
+          <option value="2">Below Average</option>
+          <option value="1">Poor</option>
+        </select>
+      </div>
+  
+      <!-- Qualitative Feedback Questions -->
+      <h4>Qualitative Feedback</h4>
+      <div class="mb-3">
+        <label for="favoriteAspects">What did you like the most about the course or instructor?</label>
+        <textarea class="form-control" id="favoriteAspects" rows="3"></textarea>
+      </div>
+      <div class="mb-3">
+        <label for="improvementSuggestions">Any suggestions for improving the course or instructor's teaching methods?</label>
+        <textarea class="form-control" id="improvementSuggestions" rows="3"></textarea>
+      </div>
+      
       <button type="submit" class="btn btn-primary">Submit</button>
     </form>
   </div>
