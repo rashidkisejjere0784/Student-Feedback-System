@@ -27,12 +27,12 @@ To set up the Student Feedback System manually, follow these steps:
    ```bash
    $ git clone https://github.com/app-generator/django-soft-ui-dashboard.git
    $ cd django-soft-ui-dashboard
-```
----
+    ```
+    ---
 2. Install modules `via VENV`
-```bash
-$ virtualenv env
-$ source env/bin/activate
-$ pip install -r requirements.txt
-```
----
+    ```bash
+    $ virtualenv env
+    $ source env/bin/activate
+    $ pip install -r requirements.txt
+    ```
+    ---
