@@ -43,4 +43,8 @@ To set up the Student Feedback System manually, follow these steps:
     $ python manage.py migrate
    ```
    ---
-
+   
+6. Create the Superuser
+```bash
+$ python manage.py createsuperuser
+```
