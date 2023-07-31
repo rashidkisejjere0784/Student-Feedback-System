@@ -37,14 +37,54 @@ To set up the Student Feedback System manually, follow these steps:
     ```
     ---
    
-4. Set Up Database
+3. Set Up Database
    ```bash
    $ python manage.py makemigrations
     $ python manage.py migrate
    ```
    ---
    
-6. Create the Superuser
+4. Create the Superuser
 ```bash
 $ python manage.py createsuperuser
 ```
+5. Start the app
+```bash
+$ python manage.py runserver
+```
+The app will run at `http://127.0.0.1:8000/.`
+---
+
+## Codebase Structure
+The project follows a simple and intuitive structure:
+```bash
+< PROJECT ROOT >
+   |
+   |-- core/
+   |    |-- settings.py   # Project Configuration
+   |    |-- urls.py       # Project Routing
+   |
+   |-- home/
+   |    |-- views.py      # APP Views
+   |    |-- urls.py       # APP Routing
+   |    |-- models.py     # APP Models
+   |    |-- tests.py      # Tests
+   |
+   |-- templates/
+   |    |-- includes/     # UI components
+   |    |-- layouts/      # Masterpages
+   |    |-- pages/        # Kit pages
+   |
+   |-- static/
+   |    |-- css/          # CSS Files
+   |    |-- scss/         # SCSS Files
+   |         |-- soft-ui-dashboard/_variables.scss # File Used for Theme Styling
+   |
+   |-- requirements.txt   # Project Dependencies
+   |
+   |-- env.sample         # ENV Configuration (default values)
+   |-- manage.py          # Start the app - Django default start script
+   |
+   |-- ************************************************************************
+```
+
