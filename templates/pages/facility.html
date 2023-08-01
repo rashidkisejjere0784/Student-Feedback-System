@@ -15,21 +15,177 @@
           <input type="text" class="form-control" placeholder="Registration Number">
         </div>
       </div>
-      <div class="row">
-        <div class="col">
-          <label for="exampleInputEmail1">Instructor Name</label>
-          <input type="text" class="form-control" placeholder="Instructor Name">
+      
+
+      <!--learning environment-->
+      <div class="mb-4">
+        <h5>Learning Environment</h5>
+        <label for="classroomFacilitiesRating">Classroom Facilities</label>
+        <select class="form-select" id="classroomFacilitiesRating">
+          <option value="5">Excellent</option>
+          <option value="4">Very Good</option>
+          <option value="3">Good</option>
+          <option value="2">Fair</option>
+          <option value="1">Poor</option>
+        </select>
+
+        <!--table to be viewed by the admin-->
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col">Student Number</th>
+              <th scope="col">Excellent</th>
+              <th scope="col">Very good</th>
+              <th scope="col">Good</th>
+              <th scope="col">Fair</th>
+              <th scope="col">Poor</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td>@mdo</td>
+              <td>@mdo</td>
+              <td>@mdo</td>
+
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>Jacob</td>
+              <td>Thornton</td>
+              <td>@fat</td>
+              <td>@fat</td>
+              <td>@fat</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>Thornton</td>
+              <td>@fat</td>
+              <td>@fat</td>
+              <td>@fat</td>
+              <td>@fat</td>
+             
+            </tr>
+          </tbody>
+        </table>
+
+        <label for="technologyRating">Use of Technology(e.g WIFI)</label>
+        <select class="form-select" id="technologyRating">
+          <option value="5">Excellent</option>
+          <option value="4">Very Good</option>
+          <option value="3">Good</option>
+          <option value="2">Fair</option>
+          <option value="1">Poor</option>
+        </select>
+        <!--table to be viewed by the admin-->
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col">Student Number</th>
+              <th scope="col">Excellent</th>
+              <th scope="col">Very good</th>
+              <th scope="col">Good</th>
+              <th scope="col">Fair</th>
+              <th scope="col">Poor</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td>@mdo</td>
+              <td>@mdo</td>
+              <td>@mdo</td>
+
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>Jacob</td>
+              <td>Thornton</td>
+              <td>@fat</td>
+              <td>@fat</td>
+              <td>@fat</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>Thornton</td>
+              <td>@fat</td>
+              <td>@fat</td>
+              <td>@fat</td>
+              <td>@fat</td>
+             
+            </tr>
+          </tbody>
+        </table>
+
+        <label for="classSizeRating">Class Size</label>
+        <select class="form-select" id="classSizeRating">
+          <option value="5">Excellent</option>
+          <option value="4">Very Good</option>
+          <option value="3">Good</option>
+          <option value="2">Fair</option>
+          <option value="1">Poor</option>
+        </select>
+        <!--table to be viewed by the admin-->
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col">Student Number</th>
+              <th scope="col">Excellent</th>
+              <th scope="col">Very good</th>
+              <th scope="col">Good</th>
+              <th scope="col">Fair</th>
+              <th scope="col">Poor</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td>@mdo</td>
+              <td>@mdo</td>
+              <td>@mdo</td>
+
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>Jacob</td>
+              <td>Thornton</td>
+              <td>@fat</td>
+              <td>@fat</td>
+              <td>@fat</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>Thornton</td>
+              <td>@fat</td>
+              <td>@fat</td>
+              <td>@fat</td>
+              <td>@fat</td>
+             
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <!-- Overall Experience -->
+      <div class="mb-4">
+        <h5>Overall Experience</h5>
+        <div class="mb-3">
+          <label for="likedMostTextarea">What did you like most about the Facilities?</label>
+          <textarea class="form-control" id="likedMostTextarea" rows="3"></textarea>
         </div>
-        <div class="col">
-          <label for="exampleInputEmail1">Course Number</label>
-          <input type="text" class="form-control" placeholder="Course Number">
+
+        <div class="mb-3">
+          <label for="improvementSuggestionsTextarea">Any suggestions for improvement on the facilities?</label>
+          <textarea class="form-control" id="improvementSuggestionsTextarea" rows="3"></textarea>
         </div>
       </div>
   
-      <div class="mb-3">
-        <label for="exampleFormControlTextarea1" class="form-label">Feedback</label>
-        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-      </div>
+      
       <button type="submit" class="btn btn-primary">Submit</button>
     </form>
   </div>
