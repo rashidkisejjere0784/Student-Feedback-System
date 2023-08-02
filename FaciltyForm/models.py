@@ -38,3 +38,18 @@ class ClassSizeFacilty(models.Model):
 
     def __str__(self) -> str:
         return f"{self.facilty_name}"
+
+
+#for the quantitative
+class QuatitativeFeedback(models.Model):
+    created_at = models.DateTimeField(auto_now_add=True)
+    facilty_name = models.CharField(max_length=50)
+    student_number = models.CharField(max_length=50)
+    registration_number = models.CharField(max_length=50)
+    likes_field = models.CharField(max_length=5000)
+    likes_sentiment = models.IntegerField(default=0)
+    suggestion_field = models.CharField(max_length=5000)
+    suggestion_sentiment = models.IntegerField(default=0)
+
+    def __str__(self) -> str:
+        return f"{self.facilty_name}"
