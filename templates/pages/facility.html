@@ -4,22 +4,34 @@
 {% block content %}
 <div class="container-fluid py-4">
   <div class="card shadow-xl">
-    <form class="m-4">
+    {% if messages %}
+
+      {% for message in messages %}
+      <div class="alert alert-warning alert-dismissible wow m-3 fadeIn" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+      {% endfor %}
+    
+    {% endif %}
+
+    <form class="m-4" method="post" action="{% url 'add_facility_feedback' %}">
+      {% csrf_token %}
       <div class="row">
         <div class="col">
           <label for="exampleInputEmail1">Student Number</label>
-          <input type="text" class="form-control" placeholder="Student Number">
+          <input type="text" name="student_number" required class="form-control" placeholder="Student Number">
         </div>
         <div class="col">
           <label for="exampleInputEmail1">Registration Number</label>
-          <input type="text" class="form-control" placeholder="Registration Number">
+          <input type="text" name="reg_number" required class="form-control" placeholder="Registration Number">
         </div>
       </div>
 
       <div class="mt-3">
         
         <label for="exampleInputEmail1">Facility Name</label>
-        <input type="text" class="form-control" placeholder="Facilty Name">
+        <input type="text" name="facility_name" required class="form-control" placeholder="Facilty Name">
       </div>
       
 
@@ -27,12 +39,12 @@
       <div class="mb-4">
         <h5>Learning Environment</h5>
         <label for="classroomFacilitiesRating">Classroom Facilities</label>
-        <select class="form-select" id="classroomFacilitiesRating">
-          <option value="5">Excellent</option>
-          <option value="4">Very Good</option>
-          <option value="3">Good</option>
-          <option value="2">Fair</option>
-          <option value="1">Poor</option>
+        <select class="form-select" name="classroom" id="classroomFacilitiesRating">
+          <option value="excellent_rating">Excellent</option>
+          <option value="very_good_rating">Very Good</option>
+          <option value="good_rating">Good</option>
+          <option value="fair_rating">Fair</option>
+          <option value="poor_rating">Poor</option>
         </select>
 
         <!--table to be viewed by the admin-->
@@ -78,12 +90,12 @@
         </table>
 
         <label for="technologyRating">Use of Technology(e.g WIFI)</label>
-        <select class="form-select" id="technologyRating">
-          <option value="5">Excellent</option>
-          <option value="4">Very Good</option>
-          <option value="3">Good</option>
-          <option value="2">Fair</option>
-          <option value="1">Poor</option>
+        <select class="form-select" name="technology" id="technologyRating">
+          <option value="excellent_rating">Excellent</option>
+          <option value="very_good_rating">Very Good</option>
+          <option value="good_rating">Good</option>
+          <option value="fair_rating">Fair</option>
+          <option value="poor_rating">Poor</option>
         </select>
         <!--table to be viewed by the admin-->
         <table class="table table-hover">
@@ -128,12 +140,12 @@
         </table>
 
         <label for="classSizeRating">Class Size</label>
-        <select class="form-select" id="classSizeRating">
-          <option value="5">Excellent</option>
-          <option value="4">Very Good</option>
-          <option value="3">Good</option>
-          <option value="2">Fair</option>
-          <option value="1">Poor</option>
+        <select class="form-select" name="class_size" id="classSizeRating">
+          <option value="excellent_rating">Excellent</option>
+          <option value="very_good_rating">Very Good</option>
+          <option value="good_rating">Good</option>
+          <option value="fair_rating">Fair</option>
+          <option value="poor_rating">Poor</option>
         </select>
         <!--table to be viewed by the admin-->
         <table class="table table-hover">
@@ -182,12 +194,12 @@
         <h5>Overall Experience</h5>
         <div class="mb-3">
           <label for="likedMostTextarea">What did you like most about the Facilities?</label>
-          <textarea class="form-control" id="likedMostTextarea" rows="3"></textarea>
+          <textarea class="form-control" name="likes" required id="likedMostTextarea" rows="3"></textarea>
         </div>
 
         <div class="mb-3">
           <label for="improvementSuggestionsTextarea">Any suggestions for improvement on the facilities?</label>
-          <textarea class="form-control" id="improvementSuggestionsTextarea" rows="3"></textarea>
+          <textarea class="form-control" name="suggestions" required id="improvementSuggestionsTextarea" rows="3"></textarea>
         </div>
       </div>
   
