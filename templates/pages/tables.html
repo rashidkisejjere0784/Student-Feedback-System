@@ -2,6 +2,19 @@
 {% load static %}
 
 {% block content %}
+
+<head>
+  <style>
+    .table-hover tbody tr:hover {
+      background-color: #ffd6e5;
+      color: white; 
+    }
+    .table-hover thead th {
+    background-color: #ffd6e5; /* Use a slightly darker pink color of your choice */
+    color: black; /* Optionally, change the text color to black for better visibility */
+  }
+  </style>
+</head>
 <div class="container-fluid py-4">
   <div class="row">
     <div class="col-12">
@@ -25,6 +38,10 @@
               <label for="courseName">Course Name</label>
               <input type="text" class="form-control" id="courseName" placeholder="Course Name">
             </div>
+            <div class="form-group">
+              <label for="courseName">Course Code</label>
+              <input type="text" class="form-control" id="courseName" placeholder="BSE2105, CSC2100, IST1203">
+            </div>
 
             <!-- Course Evaluation -->
             <div class="mb-4">
@@ -38,6 +55,44 @@
                 <option value="1">Poor</option>
               </select>
 
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th scope="col">Course Code</th>
+                    <th scope="col">Excellent</th>
+                    <th scope="col">Very Good</th>
+                    <th scope="col">Good</th>
+                    <th scope="col">Fair</th>
+                    <th scope="col">Poor</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">BSE2105</th>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>3</td>
+                    <td>4</td>
+                    <td>5</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">IST1203</th>
+                    <td>6</td>
+                    <td>7</td>
+                    <td>8</td>
+                    <td>9</td>
+                    <td>10</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">CSC2100</th>
+                    <td>11</td>
+                    <td>12</td>
+                    <td>13</td>
+                    <td>14</td>
+                    <td>15</td>
+                  </tr>
+                </tbody>
+              </table>
               <label for="courseContentRating">Course Content</label>
               <select class="form-select" id="courseContentRating">
                 <option value="5">Excellent</option>
@@ -57,10 +112,49 @@
               </select>
             </div>
 
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th scope="col">Course Code</th>
+                  <th scope="col">Excellent</th>
+                  <th scope="col">Very Good</th>
+                  <th scope="col">Good</th>
+                  <th scope="col">Fair</th>
+                  <th scope="col">Poor</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">BSE2105</th>
+                  <td>1</td>
+                  <td>2</td>
+                  <td>3</td>
+                  <td>4</td>
+                  <td>5</td>
+                </tr>
+                <tr>
+                  <th scope="row">IST1203</th>
+                  <td>6</td>
+                  <td>7</td>
+                  <td>8</td>
+                  <td>9</td>
+                  <td>10</td>
+                </tr>
+                <tr>
+                  <th scope="row">CSC2100</th>
+                  <td>11</td>
+                  <td>12</td>
+                  <td>13</td>
+                  <td>14</td>
+                  <td>15</td>
+                </tr>
+              </tbody>
+            </table>
+
             <!-- Instructor Evaluation -->
             <div class="mb-4">
-              <h5>Instructor Evaluation</h5>
-              <label for="instructorRating">Overall Instructor Rating</label>
+              <h5>Course Coverage & Impact</h5>
+              <label for="instructorRating">Course Coverage</label>
               <select class="form-select" id="instructorRating">
                 <option value="5">Excellent</option>
                 <option value="4">Very Good</option>
@@ -69,7 +163,46 @@
                 <option value="1">Poor</option>
               </select>
 
-              <label for="teachingMethodsRating">Teaching Methods</label>
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th scope="col">Course Code</th>
+                    <th scope="col">Excellent</th>
+                    <th scope="col">Very Good</th>
+                    <th scope="col">Good</th>
+                    <th scope="col">Fair</th>
+                    <th scope="col">Poor</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">BSE2105</th>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>3</td>
+                    <td>4</td>
+                    <td>5</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">IST1203</th>
+                    <td>6</td>
+                    <td>7</td>
+                    <td>8</td>
+                    <td>9</td>
+                    <td>10</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">CSC2100</th>
+                    <td>11</td>
+                    <td>12</td>
+                    <td>13</td>
+                    <td>14</td>
+                    <td>15</td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <label for="teachingMethodsRating">Course Impact On Your Skills</label>
               <select class="form-select" id="teachingMethodsRating">
                 <option value="5">Excellent</option>
                 <option value="4">Very Good</option>
@@ -78,7 +211,47 @@
                 <option value="1">Poor</option>
               </select>
 
-              <label for="communicationRating">Instructor Communication</label>
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th scope="col">Course Code</th>
+                    <th scope="col">Excellent</th>
+                    <th scope="col">Very Good</th>
+                    <th scope="col">Good</th>
+                    <th scope="col">Fair</th>
+                    <th scope="col">Poor</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">BSE2105</th>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>3</td>
+                    <td>4</td>
+                    <td>5</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">IST1203</th>
+                    <td>6</td>
+                    <td>7</td>
+                    <td>8</td>
+                    <td>9</td>
+                    <td>10</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">CSC2100</th>
+                    <td>11</td>
+                    <td>12</td>
+                    <td>13</td>
+                    <td>14</td>
+                    <td>15</td>
+                  </tr>
+                </tbody>
+              </table>
+
+
+              <label for="communicationRating">Level Of Individual Participation</label>
               <select class="form-select" id="communicationRating">
                 <option value="5">Excellent</option>
                 <option value="4">Very Good</option>
@@ -86,10 +259,49 @@
                 <option value="2">Fair</option>
                 <option value="1">Poor</option>
               </select>
+
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th scope="col">Course Code</th>
+                    <th scope="col">Excellent</th>
+                    <th scope="col">Very Good</th>
+                    <th scope="col">Good</th>
+                    <th scope="col">Fair</th>
+                    <th scope="col">Poor</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">BSE2105</th>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>3</td>
+                    <td>4</td>
+                    <td>5</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">IST1203</th>
+                    <td>6</td>
+                    <td>7</td>
+                    <td>8</td>
+                    <td>9</td>
+                    <td>10</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">CSC2100</th>
+                    <td>11</td>
+                    <td>12</td>
+                    <td>13</td>
+                    <td>14</td>
+                    <td>15</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
 
             <!-- Learning Environment -->
-            <div class="mb-4">
+            <!-- <div class="mb-4">
               <h5>Learning Environment</h5>
               <label for="classroomFacilitiesRating">Classroom Facilities</label>
               <select class="form-select" id="classroomFacilitiesRating">
@@ -117,7 +329,7 @@
                 <option value="2">Fair</option>
                 <option value="1">Poor</option>
               </select>
-            </div>
+            </div> -->
 
             <!-- Overall Experience -->
             <div class="mb-4">
