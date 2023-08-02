@@ -29,11 +29,11 @@
                   </span>
 
                   {% if app.models %}
-                    <div class="multi-level ms-5 collapse {% if 'tables-bootstrap-' in segment or app_label == app.label or app.url in request.path|urlencode %} show {% endif %}" role="list" id="submenu-{{ app.app_label }}"                                                                                                       aria-expanded="{% if app_label == app.label or app.url in request.path|urlencode %}true{% else %}false{% endif %}">
+                    <div class="multi-level ms-5 collapse {% if 'tables-bootstrap-' in request.path or app_label == app.label or app.url in request.path|urlencode %} show {% endif %}" role="list" id="submenu-{{ app.app_label }}"                                                                                                       aria-expanded="{% if app_label == app.label or app.url in request.path|urlencode %}true{% else %}false{% endif %}">
                       <ul class="flex-column nav">
                         {% for model in app.models %}
                           {% if model.url %}
-                            <li class="nav-item{% if 'bootstrap-tables' in segment or model.url in request.path|urlencode %} active {% endif %} list-unstyled">
+                            <li class="nav-item{% if 'bootstrap-tables' in request.path or model.url in request.path|urlencode %} active {% endif %} list-unstyled">
                               <a class="nav-link" href="{{ model.url }}">
                                 <span class="nav-link-text ms-1">{{ model.label }}</span>
                               </a>
@@ -53,9 +53,9 @@
       <li class="nav-item">
 
         {% if request.user.is_superuser %}
-        <a href="{% url 'admin:index' %}" class="nav-link {% if 'index' in segment %} active {% endif %}">
+        <a href="{% url 'admin:index' %}" class="nav-link {% if 'index' in request.path %} active {% endif %}">
         {% else %}
-        <a href="{% url 'index' %}" class="nav-link {% if 'index' in segment %} active {% endif %}">
+        <a href="{% url 'index' %}" class="nav-link {% if 'index' in request.path %} active {% endif %}">
         {% endif %}
 
           <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
@@ -80,7 +80,7 @@
     {% if request.user.is_authenticated and not request.user.is_superuser %}
 
       <li class="nav-item">
-          <a class="nav-link {% if 'tables' in segment %} active {% endif %} " href="{% url 'tables' %}">
+          <a class="nav-link {% if 'course' in request.path %} active {% endif %} " href="{% url 'course' %}">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
               <svg width="12px" height="12px" viewBox="0 0 42 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <title>office</title>
@@ -100,7 +100,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link {% if 'billing' in segment %} active {% endif %} " href="{% url 'billing' %}">
+          <a class="nav-link {% if 'instructor' in request.path %} active {% endif %} " href="{% url 'instructor' %}">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
               <svg width="12px" height="12px" viewBox="0 0 43 36" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <title>credit-card</title>
@@ -120,7 +120,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link {% if 'Facility' in segment %} active {% endif %} " href="{% url 'facility' %}">
+          <a class="nav-link {% if 'facility' in request.path %} active {% endif %} " href="{% url 'facility' %}">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
               <svg width="12px" height="12px" viewBox="0 0 42 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <title>box-3d-50</title>
@@ -144,7 +144,7 @@
           <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Account pages</h6>
         </li>
         <li class="nav-item">
-          <a class="nav-link {% if 'profile' in segment %} active {% endif %} " href="{% url 'profile' %}">
+          <a class="nav-link {% if 'profile' in request.path %} active {% endif %} " href="{% url 'profile' %}">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
               <svg width="12px" height="12px" viewBox="0 0 46 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <title>customer-support</title>

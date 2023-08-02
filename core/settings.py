@@ -56,7 +56,9 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
 
     "home",
-    "FaciltyForm"
+    "FaciltyForm",
+    "CourseForm",
+    "InstructorForm"
 ]
 
 MIDDLEWARE = [

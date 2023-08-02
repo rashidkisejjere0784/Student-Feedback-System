@@ -1,0 +1,174 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<head>
+  <style>
+    .table-hover tbody tr:hover {
+      background-color: #ffd6e5;
+      color: white; 
+    }
+    .table-hover thead th {
+    background-color: #ffd6e5; 
+    color: black; 
+  }
+  </style>
+</head>
+<div class="container-fluid py-4">
+  <div class="card shadow-xl">
+    {% if messages %}
+
+      {% for message in messages %}
+      <div class="alert alert-warning alert-dismissible wow m-3 fadeIn" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+      {% endfor %}
+    
+    {% endif %}
+
+    <form class="m-4" method="post" action="{% url 'add_instructor_feedback' %}">
+      {% csrf_token%}
+      <div class="row">
+        <div class="col">
+          <label for="studentNumber">Student Number</label>
+          <input type="text" class="form-control" name="student_number" placeholder="Student Number">
+        </div>
+        <div class="col">
+          <label for="registrationNumber">Registration Number</label>
+          <input type="text" class="form-control" name="reg_number" placeholder="Registration Number">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <label for="instructorName">Instructor Name</label>
+          <input type="text" class="form-control" name="instructor_name" placeholder="Instructor Name">
+        </div>
+        <div class="col">
+          <label for="courseNumber">Instructor Course Code</label>
+          <input type="text" class="form-control" name="course_code" placeholder="BSE2105, CSC2100, IST1203">
+        </div>
+      </div>
+  
+      
+      
+      <!-- Quantitative Feedback Questions -->
+      <div class="mb-3">
+        <label for="courseContentRating">Instructor Teaching Rating:</label>
+        <select class="form-select" name="courseContentRating">
+          <option value="excellent_rating">Excellent</option>
+          <option value="very_good_rating">Very Good</option>
+          <option value="good_rating">Good</option>
+          <option value="fair_rating">Fair</option>
+          <option value="poor_rating">Poor</option>
+        </select>
+      </div>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Instructor Name</th>
+            <th scope="col">Excellent</th>
+            <th scope="col">Very Good</th>
+            <th scope="col">Good</th>
+            <th scope="col">Fair</th>
+            <th scope="col">Poor</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">BSE2105</th>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+            <td>5</td>
+          </tr>
+          <tr>
+            <th scope="row">IST1203</th>
+            <td>6</td>
+            <td>7</td>
+            <td>8</td>
+            <td>9</td>
+            <td>10</td>
+          </tr>
+          <tr>
+            <th scope="row">CSC2100</th>
+            <td>11</td>
+            <td>12</td>
+            <td>13</td>
+            <td>14</td>
+            <td>15</td>
+          </tr>
+        </tbody>
+      </table>
+      
+      
+      <div class="mb-3">
+        <label for="instructorTeachingRating">Instructor-Learner Interaction Rating</label>
+        <select class="form-select" name="instructorTeachingRating">
+          <option value="excellent_rating">Excellent</option>
+          <option value="very_good_rating">Very Good</option>
+          <option value="good_rating">Good</option>
+          <option value="fair_rating">Fair</option>
+          <option value="poor_rating">Poor</option>
+        </select>
+      </div>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Instructor Name</th>
+            <th scope="col">Excellent</th>
+            <th scope="col">Very Good</th>
+            <th scope="col">Good</th>
+            <th scope="col">Fair</th>
+            <th scope="col">Poor</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">BSE2105</th>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+            <td>5</td>
+          </tr>
+          <tr>
+            <th scope="row">IST1203</th>
+            <td>6</td>
+            <td>7</td>
+            <td>8</td>
+            <td>9</td>
+            <td>10</td>
+          </tr>
+          <tr>
+            <th scope="row">CSC2100</th>
+            <td>11</td>
+            <td>12</td>
+            <td>13</td>
+            <td>14</td>
+            <td>15</td>
+          </tr>
+        </tbody>
+      </table>
+   
+      <!-- Qualitative Feedback Questions -->
+      <h4>Qualitative Feedback</h4>
+      <div class="mb-3">
+        <label for="favoriteAspects">What did you like the most about the instructor?</label>
+        <textarea class="form-control" name="likes" id="favoriteAspects" rows="3"></textarea>
+      </div>
+      <div class="mb-3">
+        <label for="improvementSuggestions">Any suggestions for improving the course and instructor's teaching methods?</label>
+        <textarea class="form-control" name="suggestions" id="improvementSuggestions" rows="3"></textarea>
+      </div>
+      
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+</div>
+
+{% include "includes/footer.html" %}
+
+{% endblock content %}

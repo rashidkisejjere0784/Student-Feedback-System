@@ -20,5 +20,7 @@ urlpatterns = [
     path('', include('home.urls')),
     path("admin/", admin.site.urls),
     path("", include('admin_soft.urls')),
-    path("facility/", include('FaciltyForm.urls'))
+    path("facility/", include('FaciltyForm.urls')),
+    path("course/", include('CourseForm.urls')),
+    path("instructor/", include('InstructorForm.urls'))
 ]
