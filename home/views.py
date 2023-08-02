@@ -12,6 +12,3 @@ def index(request):
     
     else:
         return redirect("login")
-
-def facility(request):
-    return render(request, 'pages/facility.html')

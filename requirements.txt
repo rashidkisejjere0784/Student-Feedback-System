@@ -3,6 +3,8 @@ gunicorn
 python-dotenv
 whitenoise
 django-admin-soft-dashboard==1.0.12
+transformers
+numpy
 
 # psycopg2-binary
 # mysqlclient
