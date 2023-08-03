@@ -3,20 +3,11 @@
 
 {% block content %}
 
-<head>
-  <style>
-    .table-hover tbody tr:hover {
-      background-color: #ffd6e5;
-      color: white; 
-    }
-    .table-hover thead th {
-    background-color: #ffd6e5; 
-    color: black; 
-  }
-  </style>
-</head>
 <div class="container-fluid py-4">
   <div class="card shadow-xl">
+    <div class="card-header pb-0">
+      <h6>Instructor Feedback Form</h6>
+    </div>
     {% if messages %}
 
       {% for message in messages %}
@@ -30,6 +21,7 @@
 
     <form class="m-4" method="post" action="{% url 'add_instructor_feedback' %}">
       {% csrf_token%}
+      {% if isAdmin == False %}
       <div class="row">
         <div class="col">
           <label for="studentNumber">Student Number</label>
@@ -51,11 +43,12 @@
         </div>
       </div>
   
-      
+      {% endif %}
       
       <!-- Quantitative Feedback Questions -->
       <div class="mb-3">
-        <label for="courseContentRating">Instructor Teaching Rating:</label>
+        <p>Instructor Teaching Rating:</p>
+        {% if isAdmin == False %}
         <select class="form-select" name="courseContentRating">
           <option value="excellent_rating">Excellent</option>
           <option value="very_good_rating">Very Good</option>
@@ -64,6 +57,8 @@
           <option value="poor_rating">Poor</option>
         </select>
       </div>
+      {% else %}
+      </div>
       <table class="table table-hover">
         <thead>
           <tr>
@@ -76,36 +71,26 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th scope="row">BSE2105</th>
-            <td>1</td>
-            <td>2</td>
-            <td>3</td>
-            <td>4</td>
-            <td>5</td>
-          </tr>
-          <tr>
-            <th scope="row">IST1203</th>
-            <td>6</td>
-            <td>7</td>
-            <td>8</td>
-            <td>9</td>
-            <td>10</td>
-          </tr>
-          <tr>
-            <th scope="row">CSC2100</th>
-            <td>11</td>
-            <td>12</td>
-            <td>13</td>
-            <td>14</td>
-            <td>15</td>
-          </tr>
+          {% if teachingRates %}
+          {% for value in teachingRates %}
+            <tr>
+              <th scope="row">{{ value.instructor_name }}</th>
+              <td>{{ value.excellent_rating }}</td>
+              <td> {{value.very_good_rating}} </td>
+              <td> {{ value.good_rating }} </td>
+              <td> {{value.fair_rating}} </td>
+              <td> {{ value.poor_rating }}</td>
+            </tr>
+          {% endfor %}
+        
+        {%  endif %}
         </tbody>
       </table>
       
-      
+      {% endif %}
       <div class="mb-3">
-        <label for="instructorTeachingRating">Instructor-Learner Interaction Rating</label>
+        <p>Instructor-Learner Interaction Rating</p>
+        {% if isAdmin == False %}
         <select class="form-select" name="instructorTeachingRating">
           <option value="excellent_rating">Excellent</option>
           <option value="very_good_rating">Very Good</option>
@@ -114,6 +99,8 @@
           <option value="poor_rating">Poor</option>
         </select>
       </div>
+      {% else %}
+      </div>
       <table class="table table-hover">
         <thead>
           <tr>
@@ -126,37 +113,27 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th scope="row">BSE2105</th>
-            <td>1</td>
-            <td>2</td>
-            <td>3</td>
-            <td>4</td>
-            <td>5</td>
-          </tr>
-          <tr>
-            <th scope="row">IST1203</th>
-            <td>6</td>
-            <td>7</td>
-            <td>8</td>
-            <td>9</td>
-            <td>10</td>
-          </tr>
-          <tr>
-            <th scope="row">CSC2100</th>
-            <td>11</td>
-            <td>12</td>
-            <td>13</td>
-            <td>14</td>
-            <td>15</td>
-          </tr>
+          {% if interationRates %}
+            {% for value in interationRates %}
+              <tr>
+                <th scope="row">{{ value.instructor_name }}</th>
+                <td>{{ value.excellent_rating }}</td>
+                <td> {{value.very_good_rating}} </td>
+                <td> {{ value.good_rating }} </td>
+                <td> {{value.fair_rating}} </td>
+                <td> {{ value.poor_rating }}</td>
+              </tr>
+            {% endfor %}
+          
+          {%  endif %}
         </tbody>
       </table>
-   
+      {% endif %}
       <!-- Qualitative Feedback Questions -->
+        {% if isAdmin == False %}
       <h4>Qualitative Feedback</h4>
       <div class="mb-3">
-        <label for="favoriteAspects">What did you like the most about the instructor?</label>
+        <label for="favoriteAspects">What can you tell us about the Instructor?</label>
         <textarea class="form-control" name="likes" id="favoriteAspects" rows="3"></textarea>
       </div>
       <div class="mb-3">
@@ -165,6 +142,139 @@
       </div>
       
       <button type="submit" class="btn btn-primary">Submit</button>
+      {% else %}
+
+      <h5 class="text-center m-4">QUALITATIVE FEEDBACK</h5>
+      <div class="border mx-2 p-2 mb-3">
+        <div class="row">
+
+          <h4 class="col">Question : <strong>What can you tell us about the Instructor?</strong> </h4>
+          <a href="" class="col-2 m-2 btn btn-primary">View Feedbacks</a>
+        </div>
+        <h5>Stats</h5>
+        <div class="row">
+          <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+            <div class="card">
+              <div class="card-body p-3">
+                <div class="row">
+                  <div class="col-8">
+                    <div class="numbers">
+                      <p class="text-sm mb-0 text-capitalize font-weight-bold">Total Postive Feedback</p>
+                      <h5 class="font-weight-bolder mb-0 text-success">
+                        30
+                      </h5>
+                    </div>
+                  </div>
+                  <div class="col-4 text-end">
+                    <div class="icon icon-shape bg-gradient-primary shadow text-center border-radius-md">
+                      <i class="ni ni-money-coins text-lg opacity-10" aria-hidden="true"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+            <div class="card">
+              <div class="card-body p-3">
+                <div class="row">
+                  <div class="col-8">
+                    <div class="numbers">
+                      <p class="text-sm mb-0 text-capitalize font-weight-bold">Total Negative Feedback</p>
+                      <h5 class="font-weight-bolder mb-0 text-danger">
+                        10
+                      </h5>
+                    </div>
+                  </div>
+                  <div class="col-4 text-end">
+                    <div class="icon icon-shape bg-gradient-primary shadow text-center border-radius-md">
+                      <i class="ni ni-paper-diploma text-lg opacity-10" aria-hidden="true"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h5 class="mt-3">Visualizations</h5>
+
+         <div class="row">
+          <div class="w-50 col">
+
+            <img src="{% static 'img/word_cloud.png' %}" class="img-fluid" alt="team1">
+          </div>
+         
+         </div>
+      </div>
+
+      <div class="border mx-2 p-2 mb-3">
+        <div class="row">
+
+          <h4 class="col">Question : <strong>Any suggestions for improving the course and instructor's teaching methods?</strong> </h4>
+          <a href="" class="col-2 m-2 btn btn-primary">View Feedbacks</a>
+        </div>
+        <h5>Stats</h5>
+        <div class="row">
+          <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+            <div class="card">
+              <div class="card-body p-3">
+                <div class="row">
+                  <div class="col-8">
+                    <div class="numbers">
+                      <p class="text-sm mb-0 text-capitalize font-weight-bold">Total Postive Feedback</p>
+                      <h5 class="font-weight-bolder mb-0 text-success">
+                        30
+                      </h5>
+                    </div>
+                  </div>
+                  <div class="col-4 text-end">
+                    <div class="icon icon-shape bg-gradient-primary shadow text-center border-radius-md">
+                      <i class="ni ni-money-coins text-lg opacity-10" aria-hidden="true"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+            <div class="card">
+              <div class="card-body p-3">
+                <div class="row">
+                  <div class="col-8">
+                    <div class="numbers">
+                      <p class="text-sm mb-0 text-capitalize font-weight-bold">Total Negative Feedback</p>
+                      <h5 class="font-weight-bolder mb-0 text-danger">
+                        10
+                      </h5>
+                    </div>
+                  </div>
+                  <div class="col-4 text-end">
+                    <div class="icon icon-shape bg-gradient-primary shadow text-center border-radius-md">
+                      <i class="ni ni-paper-diploma text-lg opacity-10" aria-hidden="true"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h5 class="mt-3">Visualizations</h5>
+
+         <div class="row">
+          <div class="w-50 col">
+
+            <img src="{% static 'img/word_cloud2.png' %}" class="img-fluid" alt="team1">
+          </div>
+         
+         </div>
+      </div>
+
+
+    {% endif %}
     </form>
   </div>
 </div>

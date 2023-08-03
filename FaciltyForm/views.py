@@ -2,11 +2,45 @@ from django.shortcuts import render
 from django.shortcuts import redirect
 from django.contrib import messages
 from .models import QuatitativeFeedback, ClassroomFacilty, ClassSizeFacilty, TechnologyFacilty
+import os
+from wordcloud import WordCloud
+
 
 # Create your views here.
 
+def generate_wordCloud(text, file_name):
+    word_cloud = WordCloud(width=900,
+                            height=400,
+                            background_color="white",
+                            min_font_size=10, colormap="viridis").generate(text)
+    
+    word_cloud.to_file(f"static/img/{file_name}.png")
+
 def facility(request):
-    return render(request, 'pages/facility.html')
+    classroom = ClassroomFacilty.objects.all()
+    classsize = ClassSizeFacilty.objects.all()
+    technology = TechnologyFacilty.objects.all()
+    qFeedback = QuatitativeFeedback.objects.all()
+
+    isAdmin = True if request.user.username == os.environ.get("ADMIN_USER_NAME") else False
+
+    #generate word cloud
+    data = QuatitativeFeedback.objects.values_list("likes_field", flat=True)
+    text = " ".join(data)
+    generate_wordCloud(text, "word_cloud")
+
+    data = QuatitativeFeedback.objects.values_list("suggestion_field", flat=True)
+    text = " ".join(data)
+    generate_wordCloud(text, "word_cloud2")
+
+
+    return render(request, 'pages/facility.html', {
+        "classroom" : classroom,
+        "classsize" : classsize,
+        "technology" : technology,
+        "qFeedback" : qFeedback,
+        "isAdmin" : isAdmin
+    })
 
 
 def check_object_existence(Model, facilty_name):
@@ -107,11 +141,11 @@ def add_feedback(request):
                 create_new_obj(TechnologyFacilty, facility_name, technology)
 
             messages.success(request, "Feedback Recorded Successfully !, Thank you")
-            return render(request, "pages/facility.html")
+            return redirect("facility")
         
         else:
             messages.success(request, "Invalid Request")
-            return render(request, "pages/facility.html")
+            return redirect("facility")
     
     else:
         return redirect("login")

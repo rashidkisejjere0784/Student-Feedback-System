@@ -8,7 +8,8 @@ def index(request):
 
     # Page from the theme 
     if request.user.is_authenticated:
-        return render(request, 'pages/index.html')
+
+        return render(request, 'pages/index.html', {"username" : request.user.username})
     
     else:
         return redirect("login")
