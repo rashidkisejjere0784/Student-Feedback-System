@@ -2,11 +2,40 @@ from django.shortcuts import render
 from django.shortcuts import redirect
 from django.contrib import messages
 from .models import QuatitativeFeedback, TeachingRate, InteractionRate
+import os
+from wordcloud import WordCloud
 
 # Create your views here.
 
+def generate_wordCloud(text, file_name):
+    word_cloud = WordCloud(width=900,
+                            height=400,
+                            background_color="white",
+                            min_font_size=10, colormap="viridis").generate(text)
+    
+    word_cloud.to_file(f"static/img/{file_name}.png")
+
 def instructor(request):
-    return render(request, 'pages/instructor.html')
+    teachingRate = TeachingRate.objects.all()
+    interationRate = InteractionRate.objects.all()
+
+
+    isAdmin = True if request.user.username == os.environ.get("ADMIN_USER_NAME") else False
+
+    #generate word cloud
+    data = QuatitativeFeedback.objects.values_list("likes_field", flat=True)
+    text = " ".join(data)
+    generate_wordCloud(text, "word_cloud")
+
+    data = QuatitativeFeedback.objects.values_list("suggestion_field", flat=True)
+    text = " ".join(data)
+    generate_wordCloud(text, "word_cloud2")
+
+    return render(request, 'pages/instructor.html', {
+        "interationRates" : interationRate,
+        "teachingRates" : teachingRate,
+        "isAdmin" : isAdmin
+    })
 
 
 def check_object_existence(Model, instructor_name):
@@ -98,11 +127,11 @@ def add_feedback(request):
                 create_new_obj(InteractionRate, instructor_name, course_code, instructorTeachingRating)
 
             messages.success(request, "Feedback Recorded Successfully !, Thank you")
-            return render(request, "pages/instructor.html")
+            return redirect("instructor")
         
         else:
             messages.success(request, "Invalid Request")
-            return render(request, "pages/instructor.html")
+            return redirect("instructor")
     
     else:
         return redirect("login")

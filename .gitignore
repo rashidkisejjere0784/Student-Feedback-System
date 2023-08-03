@@ -9,9 +9,9 @@ build/
 env
 /staticfiles/
 myenv
+sentiment
 
 #src
 *.sqlite*
 
-.env
 yarn.lock

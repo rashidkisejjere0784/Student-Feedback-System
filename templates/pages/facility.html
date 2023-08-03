@@ -17,6 +17,7 @@
 
     <form class="m-4" method="post" action="{% url 'add_facility_feedback' %}">
       {% csrf_token %}
+      {% if isAdmin == False %}
       <div class="row">
         <div class="col">
           <label for="exampleInputEmail1">Student Number</label>
@@ -34,11 +35,14 @@
         <input type="text" name="facility_name" required class="form-control" placeholder="Facilty Name">
       </div>
       
+      {% endif %}
 
       <!--learning environment-->
       <div class="mb-4">
         <h5>Learning Environment</h5>
-        <label for="classroomFacilitiesRating">Classroom Facilities</label>
+
+        <p>Classroom Facilities</p>
+        {% if isAdmin == False %}
         <select class="form-select" name="classroom" id="classroomFacilitiesRating">
           <option value="excellent_rating">Excellent</option>
           <option value="very_good_rating">Very Good</option>
@@ -47,6 +51,7 @@
           <option value="poor_rating">Poor</option>
         </select>
 
+        {% else %}
         <!--table to be viewed by the admin-->
         <table class="table table-hover">
           <thead>
@@ -60,36 +65,25 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-              <td>@mdo</td>
-              <td>@mdo</td>
-
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Jacob</td>
-              <td>Thornton</td>
-              <td>@fat</td>
-              <td>@fat</td>
-              <td>@fat</td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>Thornton</td>
-              <td>@fat</td>
-              <td>@fat</td>
-              <td>@fat</td>
-              <td>@fat</td>
-             
-            </tr>
+            {% if classroom %}
+            {% for value in classroom %}
+              <tr>
+                <th scope="row">{{ value.facilty_name }}</th>
+                <td>{{ value.excellent_rating }}</td>
+                <td> {{value.very_good_rating}} </td>
+                <td> {{ value.good_rating }} </td>
+                <td> {{value.fair_rating}} </td>
+                <td> {{ value.poor_rating }}</td>
+              </tr>
+            {% endfor %}
+          
+          {%  endif %}
           </tbody>
         </table>
+        {% endif %}
 
-        <label for="technologyRating">Use of Technology(e.g WIFI)</label>
+        <p>Use of Technology(e.g WIFI)</p>
+        {% if isAdmin == False %}
         <select class="form-select" name="technology" id="technologyRating">
           <option value="excellent_rating">Excellent</option>
           <option value="very_good_rating">Very Good</option>
@@ -97,6 +91,7 @@
           <option value="fair_rating">Fair</option>
           <option value="poor_rating">Poor</option>
         </select>
+        {% else %}
         <!--table to be viewed by the admin-->
         <table class="table table-hover">
           <thead>
@@ -110,36 +105,24 @@
             </tr>
           </thead>
           <tbody>
+            {% if technology %}
+          {% for value in technology %}
             <tr>
-              <th scope="row">1</th>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-              <td>@mdo</td>
-              <td>@mdo</td>
-
+              <th scope="row">{{ value.facilty_name }}</th>
+              <td>{{ value.excellent_rating }}</td>
+              <td> {{value.very_good_rating}} </td>
+              <td> {{ value.good_rating }} </td>
+              <td> {{value.fair_rating}} </td>
+              <td> {{ value.poor_rating }}</td>
             </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Jacob</td>
-              <td>Thornton</td>
-              <td>@fat</td>
-              <td>@fat</td>
-              <td>@fat</td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>Thornton</td>
-              <td>@fat</td>
-              <td>@fat</td>
-              <td>@fat</td>
-              <td>@fat</td>
-             
-            </tr>
+          {% endfor %}
+        
+        {%  endif %}
           </tbody>
         </table>
-
-        <label for="classSizeRating">Class Size</label>
+        {% endif %}
+        <p>Class Size</p>
+        {% if isAdmin == False %}
         <select class="form-select" name="class_size" id="classSizeRating">
           <option value="excellent_rating">Excellent</option>
           <option value="very_good_rating">Very Good</option>
@@ -148,6 +131,7 @@
           <option value="poor_rating">Poor</option>
         </select>
         <!--table to be viewed by the admin-->
+        {% else %}
         <table class="table table-hover">
           <thead>
             <tr>
@@ -160,51 +144,175 @@
             </tr>
           </thead>
           <tbody>
+            {% if classsize %}
+          {% for value in classsize %}
             <tr>
-              <th scope="row">1</th>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-              <td>@mdo</td>
-              <td>@mdo</td>
-
+              <th scope="row">{{ value.facilty_name }}</th>
+              <td>{{ value.excellent_rating }}</td>
+              <td> {{value.very_good_rating}} </td>
+              <td> {{ value.good_rating }} </td>
+              <td> {{value.fair_rating}} </td>
+              <td> {{ value.poor_rating }}</td>
             </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Jacob</td>
-              <td>Thornton</td>
-              <td>@fat</td>
-              <td>@fat</td>
-              <td>@fat</td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>Thornton</td>
-              <td>@fat</td>
-              <td>@fat</td>
-              <td>@fat</td>
-              <td>@fat</td>
-             
-            </tr>
+          {% endfor %}
+        
+        {%  endif %}
           </tbody>
         </table>
+
+        {% endif %}
       </div>
       <!-- Overall Experience -->
-      <div class="mb-4">
-        <h5>Overall Experience</h5>
-        <div class="mb-3">
-          <label for="likedMostTextarea">What did you like most about the Facilities?</label>
-          <textarea class="form-control" name="likes" required id="likedMostTextarea" rows="3"></textarea>
-        </div>
+        {% if isAdmin == False %}
+          <div class="mb-4">
+            <h5>Overall Experience</h5>
+            <div class="mb-3">
+              <label for="likedMostTextarea">What can you tell us about the facility?</label>
+              <textarea class="form-control" name="likes" required id="likedMostTextarea" rows="3"></textarea>
+            </div>
 
-        <div class="mb-3">
-          <label for="improvementSuggestionsTextarea">Any suggestions for improvement on the facilities?</label>
-          <textarea class="form-control" name="suggestions" required id="improvementSuggestionsTextarea" rows="3"></textarea>
-        </div>
-      </div>
-  
+            <div class="mb-3">
+              <label for="improvementSuggestionsTextarea">Any suggestions for improvement on the facilities?</label>
+              <textarea class="form-control" name="suggestions" required id="improvementSuggestionsTextarea" rows="3"></textarea>
+            </div>
+          </div>
+
       
       <button type="submit" class="btn btn-primary">Submit</button>
+
+      {% else %}
+
+      <h5 class="text-center m-4">QUALITATIVE FEEDBACK</h5>
+      <div class="border mx-2 p-2 mb-3">
+        <div class="row">
+
+          <h4 class="col">Question : <strong>What can you tell us about the facility?</strong> </h4>
+          <a href="" class="col-2 m-2 btn btn-primary">View Feedbacks</a>
+        </div>
+        <h5>Stats</h5>
+        <div class="row">
+          <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+            <div class="card">
+              <div class="card-body p-3">
+                <div class="row">
+                  <div class="col-8">
+                    <div class="numbers">
+                      <p class="text-sm mb-0 text-capitalize font-weight-bold">Total Postive Feedback</p>
+                      <h5 class="font-weight-bolder mb-0 text-success">
+                        30
+                      </h5>
+                    </div>
+                  </div>
+                  <div class="col-4 text-end">
+                    <div class="icon icon-shape bg-gradient-primary shadow text-center border-radius-md">
+                      <i class="ni ni-money-coins text-lg opacity-10" aria-hidden="true"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+            <div class="card">
+              <div class="card-body p-3">
+                <div class="row">
+                  <div class="col-8">
+                    <div class="numbers">
+                      <p class="text-sm mb-0 text-capitalize font-weight-bold">Total Negative Feedback</p>
+                      <h5 class="font-weight-bolder mb-0 text-danger">
+                        10
+                      </h5>
+                    </div>
+                  </div>
+                  <div class="col-4 text-end">
+                    <div class="icon icon-shape bg-gradient-primary shadow text-center border-radius-md">
+                      <i class="ni ni-paper-diploma text-lg opacity-10" aria-hidden="true"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h5 class="mt-3">Visualizations</h5>
+
+         <div class="row">
+          <div class="w-50 col">
+
+            <img src="{% static 'img/word_cloud.png' %}" class="img-fluid" alt="team1">
+          </div>
+         
+         </div>
+      </div>
+
+      <div class="border mx-2 p-2 mb-3">
+        <div class="row">
+
+          <h4 class="col">Question : <strong>Any suggestions for improvement on the facilities?</strong> </h4>
+          <a href="" class="col-2 m-2 btn btn-primary">View Feedbacks</a>
+        </div>
+        <h5>Stats</h5>
+        <div class="row">
+          <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+            <div class="card">
+              <div class="card-body p-3">
+                <div class="row">
+                  <div class="col-8">
+                    <div class="numbers">
+                      <p class="text-sm mb-0 text-capitalize font-weight-bold">Total Postive Feedback</p>
+                      <h5 class="font-weight-bolder mb-0 text-success">
+                        30
+                      </h5>
+                    </div>
+                  </div>
+                  <div class="col-4 text-end">
+                    <div class="icon icon-shape bg-gradient-primary shadow text-center border-radius-md">
+                      <i class="ni ni-money-coins text-lg opacity-10" aria-hidden="true"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+            <div class="card">
+              <div class="card-body p-3">
+                <div class="row">
+                  <div class="col-8">
+                    <div class="numbers">
+                      <p class="text-sm mb-0 text-capitalize font-weight-bold">Total Negative Feedback</p>
+                      <h5 class="font-weight-bolder mb-0 text-danger">
+                        10
+                      </h5>
+                    </div>
+                  </div>
+                  <div class="col-4 text-end">
+                    <div class="icon icon-shape bg-gradient-primary shadow text-center border-radius-md">
+                      <i class="ni ni-paper-diploma text-lg opacity-10" aria-hidden="true"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h5 class="mt-3">Visualizations</h5>
+
+         <div class="row">
+          <div class="w-50 col">
+
+            <img src="{% static 'img/word_cloud2.png' %}" class="img-fluid" alt="team1">
+          </div>
+         
+         </div>
+      </div>
+
+
+    {% endif %}
     </form>
   </div>
 

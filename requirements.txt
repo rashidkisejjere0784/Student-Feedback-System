@@ -5,6 +5,11 @@ whitenoise
 django-admin-soft-dashboard==1.0.12
 transformers
 numpy
+matplotlib
+seaborn
+tensorflow
+torch
+wordcloud
 
 # psycopg2-binary
 # mysqlclient
