@@ -25,11 +25,22 @@ def instructor(request):
     #generate word cloud
     data = QuatitativeFeedback.objects.values_list("likes_field", flat=True)
     text = " ".join(data)
-    generate_wordCloud(text, "word_cloud")
+    if text != "":
+        generate_wordCloud(text, "word_cloud")
+
+    else:
+        if os.path.exists("static/img/word_cloud.png"):
+            os.remove("static/img/word_cloud.png")
 
     data = QuatitativeFeedback.objects.values_list("suggestion_field", flat=True)
     text = " ".join(data)
-    generate_wordCloud(text, "word_cloud2")
+    if text != "":
+        generate_wordCloud(text, "word_cloud2")
+
+    else:
+        if os.path.exists("static/img/word_cloud2.png"):
+            os.remove("static/img/word_cloud2.png")
+
 
     return render(request, 'pages/instructor.html', {
         "interationRates" : interationRate,
