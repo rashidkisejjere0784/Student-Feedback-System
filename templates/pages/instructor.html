@@ -134,7 +134,7 @@
       <h4>Qualitative Feedback</h4>
       <div class="mb-3">
         <label for="favoriteAspects">What can you tell us about the Instructor?</label>
-        <textarea class="form-control" name="likes" id="favoriteAspects" rows="3"></textarea>
+        <textarea class="form-control" name="feedback" id="favoriteAspects" rows="3"></textarea>
       </div>
       <div class="mb-3">
         <label for="improvementSuggestions">Any suggestions for improving the course and instructor's teaching methods?</label>
@@ -149,7 +149,7 @@
         <div class="row">
 
           <h4 class="col">Question : <strong>What can you tell us about the Instructor?</strong> </h4>
-          <a href="" class="col-2 m-2 btn btn-primary">View Feedbacks</a>
+          <a href="{% url 'view_instruction_feedback' 'Feedbacks'%}" class="col-2 m-2 btn btn-primary">View Feedbacks</a>
         </div>
         <h5>Stats</h5>
         <div class="row">
@@ -161,7 +161,7 @@
                     <div class="numbers">
                       <p class="text-sm mb-0 text-capitalize font-weight-bold">Total Postive Feedback</p>
                       <h5 class="font-weight-bolder mb-0 text-success">
-                        30
+                        {{f_postive}}
                       </h5>
                     </div>
                   </div>
@@ -183,7 +183,7 @@
                     <div class="numbers">
                       <p class="text-sm mb-0 text-capitalize font-weight-bold">Total Negative Feedback</p>
                       <h5 class="font-weight-bolder mb-0 text-danger">
-                        10
+                        {{f_negative}}
                       </h5>
                     </div>
                   </div>
@@ -205,6 +205,11 @@
 
             <img src="{% static 'img/word_cloud.png' %}" class="img-fluid" alt="team1">
           </div>
+          <div class="w-50 m-2">
+            <div class="h-50">
+              <img src="{% static 'img/piechart.png' %}" alt="pie chart" class="img-fluid">
+            </div>
+          </div>
          
          </div>
       </div>
@@ -213,7 +218,7 @@
         <div class="row">
 
           <h4 class="col">Question : <strong>Any suggestions for improving the course and instructor's teaching methods?</strong> </h4>
-          <a href="" class="col-2 m-2 btn btn-primary">View Feedbacks</a>
+          <a href="{% url 'view_instruction_feedback' 'Suggestions'%}" class="col-2 m-2 btn btn-primary">View Feedbacks</a>
         </div>
         <h5>Stats</h5>
         <div class="row">
@@ -225,7 +230,7 @@
                     <div class="numbers">
                       <p class="text-sm mb-0 text-capitalize font-weight-bold">Total Postive Feedback</p>
                       <h5 class="font-weight-bolder mb-0 text-success">
-                        30
+                        {{s_positive}}
                       </h5>
                     </div>
                   </div>
@@ -247,7 +252,7 @@
                     <div class="numbers">
                       <p class="text-sm mb-0 text-capitalize font-weight-bold">Total Negative Feedback</p>
                       <h5 class="font-weight-bolder mb-0 text-danger">
-                        10
+                        {{s_negative}}
                       </h5>
                     </div>
                   </div>
@@ -268,6 +273,11 @@
           <div class="w-50 col">
 
             <img src="{% static 'img/word_cloud2.png' %}" class="img-fluid" alt="team1">
+          </div>
+          <div class="w-50 m-2">
+            <div class="h-50">
+              <img src="{% static 'img/piechart2.png' %}" alt="pie chart" class="img-fluid">
+            </div>
           </div>
          
          </div>

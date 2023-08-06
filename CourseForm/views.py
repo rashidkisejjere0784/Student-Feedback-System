@@ -4,16 +4,50 @@ from django.contrib import messages
 from .models import Coverage, QuatitativeFeedback, Assessment, Evaluation, Impact, Participation
 import os
 from wordcloud import WordCloud
+from transformers import AutoModelForSequenceClassification, AutoTokenizer
+import matplotlib
+
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
+import numpy as np
+
+#import the model
+model_path = "sentiment"
+
+model = AutoModelForSequenceClassification.from_pretrained(model_path)
+tokenizer = AutoTokenizer.from_pretrained(model_path)
 
 # Create your views here.
 
 def generate_wordCloud(text, file_name):
-    word_cloud = WordCloud(width=900,
-                            height=400,
+    word_cloud = WordCloud(width=600,
+                            height=500,
                             background_color="white",
                             min_font_size=10, colormap="viridis").generate(text)
     
     word_cloud.to_file(f"static/img/{file_name}.png")
+
+def PieChart(p_feedback, n_feedback, file_name):
+    total = QuatitativeFeedback.objects.count()
+    
+    if os.path.exists(f"static/img/{file_name}.png"):
+        os.remove(f"static/img/{file_name}.png")
+
+    #calculate the percentage for each of the feedbacks
+
+    if total != 0:
+
+        p_feedback = (p_feedback / total) * 100
+        n_feedback = (n_feedback / total) * 100
+
+        arr = np.array([p_feedback, n_feedback])
+        labels = ["positive", "negative"]
+
+        plt.pie(arr, labels=labels)
+        plt.legend()
+        plt.savefig(f"static/img/{file_name}.png")
+
+        plt.close()
 
 def course(request):
     #read the data from database
@@ -26,7 +60,7 @@ def course(request):
     isAdmin = True if request.user.username == os.environ.get("ADMIN_USER_NAME") else False
 
     #generate word cloud
-    data = QuatitativeFeedback.objects.values_list("likes_field", flat=True)
+    data = QuatitativeFeedback.objects.values_list("feedback_field", flat=True)
     text = " ".join(data)
     if text != "":
         generate_wordCloud(text, "word_cloud")
@@ -45,13 +79,29 @@ def course(request):
             os.remove("static/img/word_cloud2.png")
 
 
+    #count the number of positive and negative sentiments
+    feedback_positive = QuatitativeFeedback.objects.filter(feedback_sentiment = 1).count()
+    feedback_negative = QuatitativeFeedback.objects.filter(feedback_sentiment = 0).count()
+
+    #plt the piechart
+    PieChart(feedback_positive, feedback_negative, "piechart")
+
+    suggestion_positive = QuatitativeFeedback.objects.filter(suggestion_sentiment = 1).count()
+    suggestion_negative = QuatitativeFeedback.objects.filter(suggestion_sentiment = 0).count()
+
+    #plt the piechart
+    PieChart(suggestion_positive, suggestion_negative, "piechart2")
 
     return render(request, 'pages/course.html', {"evaluation" : evaluation,
                                                   "assessments" : assessments,
                                                   "coverage" : coverage,
                                                   "impact" : impact,
                                                   "participation" : participation,
-                                                  "isAdmin" : isAdmin
+                                                  "isAdmin" : isAdmin,
+                                                  "f_postive" : feedback_positive,
+                                                  "f_negative" : feedback_negative,
+                                                  "s_positive" : suggestion_positive,
+                                                  "s_negative" : suggestion_negative
                                                   })
 
 
@@ -94,6 +144,15 @@ def create_new_obj(Model,course_code,course_name, value):
     model.save()
     
 
+def view_feedback(request, feedback_type):
+    if request.user.is_authenticated:
+        data = QuatitativeFeedback.objects.all()
+        return render(request, "pages/view-feedback.html", {"data" : data, "feedback" : feedback_type})
+    
+    else:
+        return redirect("login")
+
+
 def add_feedback(request):
     if request.user.is_authenticated:
         if request.method == "POST":
@@ -108,18 +167,26 @@ def add_feedback(request):
             instructorRating = data['instructorRating']
             teachingMethodsRating = data['teachingMethodsRating']
             communicationRating = data['communicationRating']
-            likes = data['likes']
+            feedback = data['feedback']
             suggestion = data['suggestions']
+
+            #check the sentiment of the two fields
+            input_1 = tokenizer(str(feedback).lower(), return_tensors="pt")["input_ids"] #tokenize the text
+            input_2 = tokenizer(str(suggestion).lower(), return_tensors="pt")["input_ids"] #tokenize the text
+
+            #predict the sentiment
+            output_1 = model(input_1).logits.argmax().item()
+            output_2 = model(input_2).logits.argmax().item()
 
             qFeedback = QuatitativeFeedback(
                 student_number = student_number,
                 registration_number = registration_number,
-                course_code = course_code,
                 course_name = course_name,
-                likes_field = likes,
+                course_code = course_code,
+                feedback_field = feedback,
                 suggestion_field = suggestion,
-                likes_sentiment = 0,
-                suggestion_sentiment = 0
+                feedback_sentiment = output_1,
+                suggestion_sentiment = output_2
             )
 
             qFeedback.save()

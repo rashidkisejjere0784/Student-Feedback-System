@@ -3,6 +3,52 @@
 
 {% block content %}
 
+<div class="container-fluid py-4">
+    <div class="row">
+      <div class="col-12">
+        <div class="card mb-4">
+            <div class="card-header">
+                <h3>{{feedback}}</h3>
+            </div>
 
+            <table class="table table-hover m-2">
+                <thead>
+                  <tr>
+                    <th scope="col">Student Number</th>
+                    <th scope="col">Registration Number</th>
+                    <th scope="col">Feedback</th>
+                    <th scope="col">Sentiment</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    {% if data %}
+                    {% for value in data %}
+                      <tr>
+                        <th scope="row">{{ value.student_number}}</th>
+                        <td>{{ value.registration_number }}</td>
+                        {% if feedback == "Feedbacks" %}
+                        <td> {{value.feedback_field}} </td>
+                        {% if value.feedback_sentiment == 1 %}
+                            <td class="text-success"> Postive </td>
+                        {% else %}
+                            <td class="text-danger"> Negative </td>
+                        {% endif %}
+                        {% else %}
+                        <td> {{value.suggestion_field}} </td>
+                        {% if value.suggestion_sentiment == 1 %}
+                            <td class="text-success"> Postive </td>
+                        {% else %}
+                            <td class="text-danger"> Negative </td>
+                        {% endif %}
+                        {% endif %}
+                      </tr>
+                    {% endfor %}
+                  
+                  {%  endif %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 
 {% endblock content %}

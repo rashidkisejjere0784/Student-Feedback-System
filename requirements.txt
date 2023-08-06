@@ -10,6 +10,7 @@ seaborn
 tensorflow
 torch
 wordcloud
+django-background-tasks
 
 # psycopg2-binary
 # mysqlclient

@@ -26,7 +26,7 @@ class Migration(migrations.Migration):
                 ("facilty_name", models.CharField(max_length=50)),
                 ("student_number", models.CharField(max_length=50)),
                 ("registration_number", models.CharField(max_length=50)),
-                ("likes_field", models.CharField(max_length=5000)),
+                ("feedback_field", models.CharField(max_length=5000)),
                 ("suggestion_field", models.CharField(max_length=5000)),
             ],
         ),
