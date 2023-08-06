@@ -6,23 +6,25 @@ import os
 from wordcloud import WordCloud
 
 # Create your views here.
-
+#Generating a word cloud from text data and saving it as an image
 def generate_wordCloud(text, file_name):
     word_cloud = WordCloud(width=900,
                             height=400,
                             background_color="white",
                             min_font_size=10, colormap="viridis").generate(text)
-    
+    #saving word cloud as an image
     word_cloud.to_file(f"static/img/{file_name}.png")
 
+#View function that handles request to the instructors page
 def instructor(request):
     teachingRate = TeachingRate.objects.all()
     interationRate = InteractionRate.objects.all()
 
-
+#checking if the user making a request is the admin
     isAdmin = True if request.user.username == os.environ.get("ADMIN_USER_NAME") else False
 
-    #generate word cloud
+    #generate two word clouds,data is collected and turned into a strings and then word cloud saved as an image
+    #if a word cloud already exists it is removed
     data = QuatitativeFeedback.objects.values_list("likes_field", flat=True)
     text = " ".join(data)
     if text != "":
