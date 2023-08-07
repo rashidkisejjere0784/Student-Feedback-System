@@ -58,8 +58,10 @@ INSTALLED_APPS = [
     "home",
     "FaciltyForm",
     "CourseForm",
-    "InstructorForm"
+    "InstructorForm",
+    "profiles"
 ]
+
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
