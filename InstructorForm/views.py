@@ -54,6 +54,8 @@ def PieChart(p_feedback, n_feedback, file_name):
 def instructor(request):
     teachingRate = TeachingRate.objects.all()
     interationRate = InteractionRate.objects.all()
+    # return render(request, 'instructor.html')
+
 
 # checking if the user making a request is the admin
     isAdmin = True if request.user.username == os.environ.get(
