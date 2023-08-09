@@ -109,6 +109,9 @@ For a detailed understanding of the project, including its development process, 
 To run the Student Feedback System locally, follow these steps:
 
 - Clone this repository.
+- create the virtual Environment `python venv -m env `
+- Activate the Environment `env \Script\activate.bat`
 - Install the required dependencies by running `pip install -r requirements.txt`.
-- Configure the database settings in `settings.py`.
-- Run the Django development server using python `manage.py runserver`.
+- Run the migrations `python manage.py makemigrations`
+- Migrate the models `python manage.py migrate`
+- Run the Django development server using `python manage.py runserver`.
