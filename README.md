@@ -103,7 +103,7 @@ graph TD
 ```
 ## Download Project Report
 For a detailed understanding of the project, including its development process, system architecture, and features, you can download the project report from the following link:
-[Download Project Report]()
+[Download Project Report](docs/T2_Report.pdf)
 
 ## How to Run the Project
 To run the Student Feedback System locally, follow these steps:
