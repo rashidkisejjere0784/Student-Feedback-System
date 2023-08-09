@@ -58,3 +58,28 @@ classDiagram
         + fair_rating: IntegerField
         + poor_rating: IntegerField
     }
+```
+---
+
+## Use Case Diagram - Student Feedback Process
+```mermaid
+graph TD
+
+    subgraph Student Feedback System
+        Admin[Administrator]
+        Student[Student]
+        WebApp[Student Feedback Web App]
+
+        Admin --> |Manages| WebApp
+        Student --> |Provides Feedback| WebApp
+        WebApp --> |Collects Feedback| FeedbackSystem
+        WebApp --> |Generates Reports| ReportingSystem
+        WebApp --> |Performs Sentiment Analysis| SentimentAnalysis
+    end
+
+    subgraph External Systems
+        ReportingSystem[Reporting System]
+        SentimentAnalysis[Sentiment Analysis System]
+        FeedbackSystem[Feedback Collection System]
+    end
+```
