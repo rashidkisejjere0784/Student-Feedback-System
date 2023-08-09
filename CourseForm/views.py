@@ -186,8 +186,6 @@ def add_feedback(request):
             input_2 = tokenizer(str(suggestion).lower(), return_tensors="pt")[
                 "input_ids"]  # tokenize the text
 
-            print("output", input_1)
-            print(model(input_1))
             # predict the sentiment
             output_1 = model(input_1).logits.argmax().item()
             output_2 = model(input_2).logits.argmax().item()
