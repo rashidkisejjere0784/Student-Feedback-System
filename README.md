@@ -87,7 +87,7 @@ graph TD
 ### Activity Diagram - Feedback Submission and Report Generation
 
 ```mermaid
-graph TD
+graph LR
 
     subgraph Student Feedback Process
         Start(Start)
@@ -97,9 +97,11 @@ graph TD
         End(End)
     end
 
-    Start --> SubmitFeedback --> PerformAnalysis --> GenerateReport --> End
+    Start --> SubmitFeedback
+    SubmitFeedback --> PerformAnalysis
+    PerformAnalysis --> GenerateReport
+    GenerateReport --> End
 
-    style Start, End fill:#77DD77,stroke:#4CAF50,stroke-width:2px
 ```
 ## Download Project Report
 For a detailed understanding of the project, including its development process, system architecture, and features, you can download the project report from the following link:
