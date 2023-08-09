@@ -83,3 +83,32 @@ graph TD
         FeedbackSystem[Feedback Collection System]
     end
 ```
+
+### Activity Diagram - Feedback Submission and Report Generation
+
+```mermaid
+graph TD
+
+    subgraph Student Feedback Process
+        Start(Start)
+        SubmitFeedback[Submit Feedback]
+        PerformAnalysis[Perform Sentiment Analysis]
+        GenerateReport[Generate Reports]
+        End(End)
+    end
+
+    Start --> SubmitFeedback --> PerformAnalysis --> GenerateReport --> End
+
+    style Start, End fill:#77DD77,stroke:#4CAF50,stroke-width:2px
+```
+## Download Project Report
+For a detailed understanding of the project, including its development process, system architecture, and features, you can download the project report from the following link:
+[Download Project Report]()
+
+## How to Run the Project
+To run the Student Feedback System locally, follow these steps:
+
+- Clone this repository.
+- Install the required dependencies by running `pip install -r requirements.txt`.
+- Configure the database settings in `settings.py`.
+- Run the Django development server using python `manage.py runserver`.
